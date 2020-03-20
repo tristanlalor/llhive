@@ -13,7 +13,7 @@
   </head>
   <% random_number = rand(46)+1 %>
   <% random_number_string = "/videos/" + random_number.to_s + ".mp4" %>
-  <% random_number_string2 = "https://github.com/tristanlalor/llhive-videos/raw/master/" + random_number.to_s + ".mp4" %>
+  <% random_number_string2 = "https://github.com/tristanlalor/llhive-videos/blob/master/" + random_number.to_s + ".mp4?raw=true" %>
   <video autoplay muted loop id="myVideo">
 <!--    <source src="<%#= random_number_string %>" type="video/mp4">-->
     <source src="<%= random_number_string2 %>">
