@@ -1,0 +1,180 @@
+<div id="search-results">
+  <% @search_words = params[:search].to_s.split(" ") %>
+  <% if params[:search] != nil %>
+    <% @landlord_results = Array.new %>
+    <% @search_words.each do |search_word| %>
+      <% if @landlord_results.length == 0 %>
+        <% @landlord_results = (Landlord.where("upper(first_name) LIKE ? OR upper(last_name) LIKE ? OR upper(city) LIKE ? OR upper(state) LIKE ?", '%'+search_word.upcase+'%', '%'+search_word.upcase+'%', '%'+search_word.upcase+'%', '%'+search_word.upcase+'%')) %>
+      <% else %>
+        <% @landlord_results = @landlord_results & (Landlord.where("upper(first_name) LIKE ? OR upper(last_name) LIKE ? OR upper(city) LIKE ? OR upper(state) LIKE ?", '%'+search_word.upcase+'%', '%'+search_word.upcase+'%', '%'+search_word.upcase+'%', '%'+search_word.upcase+'%')) %>
+      <% end %>
+    <% end %>
+    <% if params[:search] == 'all' || params[:search] == 'All' %>
+      <% @landlord_results = @landlords %>
+    <% end %>
+    <script type="text/javascript">
+
+        var elements = document.getElementsByClassName('mylink');
+        length = elements.length;
+        while(length--) {
+            element = elements[length];
+            var myid = element.id;
+                elements[length].onclick = function(){
+                    jQuery.ajax({
+
+                        data: { id: this.id},
+                        type: 'GET',
+                        url: "",
+                        success: function() {
+                            $('#search-container').append("<%= j render 'show-landlord', id: params[:id] %>");
+                            alert(<%= 2 %>)
+                        },
+
+                    });
+                  $('#search-results').remove();
+                // var stringtest = "<"+"%= j render 'show-landlord', :send_it => "+ this.id +"} %"+">";
+                //     var btn = document.createElement("DIV");   // Create a <button> element
+                //     btn.innerHTML = stringtest;                   // Insert text
+                    // document.body.appendChild(btn);
+                    <%# send_it = 4 %>
+                    <%#= request.params.merge(id: landlord.id) %>
+                  $('#search-container').append("<%= j render 'show-landlord', id: params[:id] %>");
+<!--                  $('#search-container').append("<%= params.inspect %>");-->
+                // alert(this.className);
+<!--                    $('#search-container').append('<%= params %>');-->
+
+            }
+        }
+
+
+
+    </script>
+    <div id="results-container">
+      <h1>Landlords</h1>
+      <div class="spacer" id="spacer-4"></div>
+      <% @landlord_results.each do |landlord| %>
+        <div class="name-container">
+          <%#= j render 'show-landlord', id: landlord.id %>
+          <%=link_to "My Link", {:action=>"index"}, :remote=>true, :id => "mylink" %>
+<!--          <a class="mylink" id="<%#= landlord.id %>"><%#=puts "Found text field with name #{@@id}" %></a>-->
+          <%#= form_tag do |f| %>
+            <%#=f.text_field :email ,:id=>"email_field" %>
+          <%# end %>
+
+<!--          <script type="text/javascript">-->
+<!--              var my_email= "my@email.com"-->
+<!--              $(document).ready(function(){-->
+<!--                  $("#email_field").val(my_email);-->
+<!--              });-->
+<!--          </script>-->
+          <script>
+
+              var depart_date='11 February 2013';
+              var return_date='21 February 2013';
+
+              jQuery.ajax({
+
+                  data: { depart: depart_date, return_date: return_date},
+                  type: 'GET',
+                  url: "/",
+
+              });
+
+          </script>
+          <%#= link_to "CLICKME", like_content_path(@content), class: 'vote', method: :put, remote: true %>
+          <%= request.params.merge(id: landlord.id) %>
+          <a class="mylink" id="<%= landlord.id %>" onclick="<%= j render 'show-landlord', id: landlord.id %>">click</a>
+<!--          $('#search-results').remove();-->
+<!--          $('#search-container').append(<%#= landlord.id %>);-->
+
+          <%# request.params.merge(id: landlord.id) %>
+<!--          "-->
+<!--          >click</a>-->
+
+
+
+
+
+          <%#= form_for @user do |f| %>
+            <%# form_css_id = "#" + f.options[:html][:id] %>
+          <%# end %>
+          <%#= form_css_id %>
+<!--          <input type="hidden" name="id" value="<%#= landlord.id %>" />-->
+          <%# form_tag :method => "get" do %>
+          <%# hidden_field_tag "id", landlord.id %>
+            <%#= params[:id => landlord.id] %>
+          <%# @page = Page.new(params[:id => landlord.id]) %>
+
+
+<!--          <input name="activitybtn" type="submit" class="btn btn-primary"  value="Take Activity"/>-->
+          <%# end %>
+          <%#= button_to [root_path] do |f| %>
+<!--            Make happy <strong><%#= @user.name %></strong>-->
+            <%#= f.button  :submit , name: "subaction",value: "update"%>
+          <%# end %>
+          <%#= f.button  :submit , name: "subaction",value: "update"%>
+
+
+
+
+
+
+
+          <span><%= link_to (landlord.first_name+' '+landlord.last_name), landlord %></span>
+          <% if landlord.reviews.count() > 0 %>
+            <% overall_score = (landlord.reviews.average(:org_score) + landlord.reviews.average(:comm_score) + landlord.reviews.average(:isre_score))/3 %>
+            <%= '%.1f' % overall_score %>
+            / 5
+          <% end %>
+        </div>
+        <br>
+        <span><%= landlord.city %></span>,
+        <span><%= landlord.state %></span>
+        <br>
+        <% if user_signed_in? %>
+          <% if current_user.admin? %>
+            <div class="edit-container">
+              <%= link_to 'Edit', edit_landlord_path(landlord) %> |
+              <%= link_to 'Destroy', landlord, method: :delete, data: { confirm: 'Are you sure?' } %>
+            </div>
+          <% end %>
+        <% end %>
+        <div class="spacer" id="spacer-n"></div>
+      <% end %>
+    </div>
+<!--    <table id="search-results-inner">-->
+<!--      <thead>-->
+<!--      <tr>-->
+<!--        <th>First name</th>-->
+<!--        <th>Last name</th>-->
+<!--        <th>City</th>-->
+<!--        <th>State</th>-->
+<!--        <th colspan="3"></th>-->
+<!--      </tr>-->
+<!--      </thead>-->
+<!--      <tbody>-->
+
+      <%# @landlord_results.each do |landlord| %>
+<!--        <tr id="buttons-container">-->
+<!--          <td><%#= landlord.first_name %></td>-->
+<!--          <td><%#= landlord.last_name %></td>-->
+<!--          <td><%#= landlord.city %></td>-->
+<!--          <td><%#= landlord.state %></td>-->
+<!--          <td><%#= link_to 'Show', landlord %></td>-->
+<!--          <td><%#= link_to 'Edit', edit_landlord_path(landlord) %></td>-->
+<!--          <td><%#= link_to 'Destroy', landlord, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
+<!--        </tr>-->
+      <%# end %>
+<!--      </tbody>-->
+<!--    </table>-->
+    <br>
+  <% end %>
+  <div id="add-landlord-container">
+    Don't see your landlord? <%= link_to 'Add a new one', new_landlord_path %> to our database!
+  </div>
+</div>
+<!--<script>-->
+<!--    var height = $("#hero-1").height();-->
+<!--    var height2 = $("#hero-2").height();-->
+<!--    document.getElementById("search-results").style.height = height;-->
+<!--</script>-->

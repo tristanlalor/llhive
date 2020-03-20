@@ -1,0 +1,28 @@
+<% if current_page?('/') || current_page?('/landlords') %>
+  <%= form_tag(landlords_path, method: :get, remote: true, autocomplete: "off") do %>
+    <%= text_field_tag(:search, params[:search]) %>
+    <% submit_tag ("Search") %>
+    <%#= params.inspect %>
+  <% end %>
+<% else %>
+  <%= form_tag(landlords_path, method: :get, remote: true, autocomplete: "off") do %>
+    <%= text_field_tag(:search, params[:search]) %>
+    <% submit_tag ("Search") %>
+  <% end %>
+<% end %>
+<script>
+    function fade() {
+        // document.getElementById("home-page-full").style.backgroundColor = "rgba(255,255,255,.6)";
+        // document.getElementById("hero-1").style.filter = "invert(.5)";
+        // document.getElementById("hero-2").style.filter = "invert(.5)";
+    }
+    document.getElementById('search').onclick = fade;
+</script>
+
+
+
+<%#= form_tag(landlords_path, method: :get, remote: true, autocomplete: "off") do %>
+  <%#= text_field_tag(:search, params[:search]) %>
+  <%# submit_tag ("Search") %>
+  <%#= params.inspect %>
+<%# end %>

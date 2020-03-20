@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>Landlord Review</title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag 'landlords', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" %>
+    <script src="javascript/main.js" type="text/javascript"></script>
+    <%= javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" %>
+    <%= javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/jquery-ujs/1.2.2/rails.min.js" %>
+  </head>
+  <% random_number = rand(46)+1 %>
+  <% random_number_string = "/videos/" + random_number.to_s + ".mp4" %>
+  <video autoplay muted loop id="myVideo">
+    <source src="<%= random_number_string %>" type="video/mp4">
+  </video>
+
+  <script>
+    document.getElementById('hero-1').onclick = function(){
+        $('#search-results').remove();
+        $('#show-landlord').remove();
+        document.getElementById("hero-1").style.height = "25vw";
+        document.getElementById("spacer-1").style.height = "5vh";
+        document.getElementById("spacer-2").style.height = "5vh";
+        document.getElementById("hero-2").style.height = "5vw";
+        document.getElementById("spacer-3").style.height = "5vh";
+    }
+  </script>
+
+
+
+  <body id="home-page-full">
+    <%= form_tag :method => "get" do %>
+      <%= hidden_field_tag "id", 1 %>
+    <% end %>
+    <div id="login-out">
+      <% if user_signed_in? %>
+        <%= link_to current_user.name, edit_user_registration_path, class: "account-button" %> |
+        <%= link_to "Logout", destroy_user_session_path, method: :delete, class:"account-button" %>
+      <% else %>
+        <%= link_to 'Sign In', new_user_session_path, class: "account-button" %> |
+        <%= link_to 'Sign Up', new_user_registration_path, class: "account-button" %>
+      <% end %>
+    </div>
+    <%#= render '/layouts/navbar' %>
+    <div class="search-box" id="search-container">
+      <div class="spacer" id="spacer-1"></div>
+      <img id="hero-1" class="hero-image" src="/images/4.png">
+      <br>
+      <div class="spacer" id="spacer-2"></div>
+      <img class="hero-title" id="hero-2" src="/images/5.png">
+      <div class="spacer" id="spacer-3"></div>
+      <div class="inner" style="border: solid red 0px">
+        <%= render 'search' %>
+      </div>
+      <div class="spacer" id="spacer-4"></div>
+    </div>
+  </body>
+
+</html>

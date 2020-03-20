@@ -1,0 +1,26 @@
+<!--<p id="notice"><%#= notice %></p>-->
+<%= render 'search' %>
+<p>
+  <strong>Body:</strong>
+  <%= @review.body %>
+</p>
+
+<p>
+  <strong>Org score:</strong>
+  <%= @review.org_score %>
+</p>
+
+<p>
+  <strong>Comm score:</strong>
+  <%= @review.comm_score %>
+</p>
+
+<p>
+  <strong>Isre score:</strong>
+  <%= @review.isre_score %>
+</p>
+<% if (user_signed_in? && (current_user.id == @review.user_id)) %>
+  <%= link_to "Edit", edit_review_path(@review) %> |
+<% end %>
+<%#= link_to 'Edit', edit_review_path(@review) %>
+<%= link_to 'Back', landlord_path(params[:landlord_id]) %>

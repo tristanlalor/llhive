@@ -1,0 +1,50 @@
+<%= form_with(model: review, local: true) do |form| %>
+  <% if review.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(review.errors.count, "error") %> prohibited this review from being saved:</h2>
+
+      <ul>
+        <% review.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :body %>
+    <%= form.text_area :body, required: true %>
+  </div>
+<style>
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+</style>
+  <div class="field">
+    <%= form.label :org_score %>
+    <%= form.number_field :org_score, step: 0.000000000000000000000000000001, required: true, :min => 0, :max => 5 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :comm_score %>
+    <%= form.number_field :comm_score, step: 0.000000000000000000000000000001, required: true, :min => 0, :max => 5 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :isre_score %>
+    <%= form.number_field :isre_score, step: 0.000000000000000000000000000001, required: true, :min => 0, :max => 5 %>
+  </div>
+  <div class="field">
+    <%= form.label "Landlord:" %>
+    <%= Landlord.find_by_id(params[:landlord_id].to_i).first_name %>
+    <%= Landlord.find_by_id(params[:landlord_id].to_i).last_name %>
+    <%= form.hidden_field :landlord_id, :value => params[:landlord_id].to_i %>
+    <%= form.hidden_field :user_id, :value => current_user.id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

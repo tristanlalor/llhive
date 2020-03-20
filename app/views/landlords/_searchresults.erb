@@ -1,0 +1,61 @@
+<div id="search-results">
+  <% @search_words = params[:search].to_s.split(" ") %>
+  <% if params[:search] != nil %>
+    <% @landlord_results = Array.new %>
+    <% @search_words.each do |search_word| %>
+      <% if @landlord_results.length == 0 %>
+        <% @landlord_results = (Landlord.where("upper(first_name) LIKE ? OR upper(last_name) LIKE ? OR upper(city) LIKE ? OR upper(state) LIKE ?", '%'+search_word.upcase+'%', '%'+search_word.upcase+'%', '%'+search_word.upcase+'%', '%'+search_word.upcase+'%')) %>
+      <% else %>
+        <% @landlord_results = @landlord_results & (Landlord.where("upper(first_name) LIKE ? OR upper(last_name) LIKE ? OR upper(city) LIKE ? OR upper(state) LIKE ?", '%'+search_word.upcase+'%', '%'+search_word.upcase+'%', '%'+search_word.upcase+'%', '%'+search_word.upcase+'%')) %>
+      <% end %>
+    <% end %>
+    <% if params[:search] == 'all' || params[:search] == 'All' %>
+      <% @landlord_results = @landlords %>
+    <% end %>
+
+    <div id="results-container">
+      <div class="search-title">
+        <h1>Landlords</h1>
+      </div>
+      <div class="search-body">
+<!--        <div class="spacer" id="spacer-4"></div>-->
+        <% @landlord_results.each do |landlord| %>
+          <div class="name-container">
+
+  <!--          <a class="mylink1" id="<%#= landlord.id %>" onclick="$('#search-results').remove(); $('#search-container').append('<= j render 'show-landlord', id: landlord.id %>');">click</a>-->
+            <%= form_tag root_path, method: "get", remote: true do %>
+              <%= hidden_field_tag :id, landlord.id %>
+              <%= hidden_field_tag :search_back, params[:search] %>
+              <%= submit_tag(landlord.first_name + " " + landlord.last_name, :class=>"submit-name") %>
+            <% end %>
+            <div class="rating">
+              <% if landlord.reviews.count() > 0 %>
+                <% overall_score = (landlord.reviews.average(:org_score) + landlord.reviews.average(:comm_score) + landlord.reviews.average(:isre_score))/3 %>
+                <%= '%.1f' % overall_score %>
+                / 5
+              <% end %>
+            </div>
+
+          </div>
+          <br>
+          <span><%= landlord.city %></span>,
+          <span><%= landlord.state %></span>
+          <br>
+          <% if user_signed_in? %>
+            <% if current_user.admin? %>
+              <div class="edit-container">
+                <%= link_to 'Edit', edit_landlord_path(landlord) %> |
+                <%= link_to 'Destroy', landlord, method: :delete, data: { confirm: 'Are you sure?' } %>
+              </div>
+            <% end %>
+          <% end %>
+          <div class="spacer" id="spacer-n"></div>
+        <% end %>
+      </div>
+      <div id="add-landlord-container">
+        Don't see your landlord? <%= link_to 'Add a new one', new_landlord_path %> to our database!
+      </div>
+    </div>
+  <% end %>
+  </div>
+</div>
