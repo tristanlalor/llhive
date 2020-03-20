@@ -13,7 +13,7 @@
  *= require_tree .
  *= require_self
  */
-@import "bulma";
+/*@import "bulma";*/
 html, body, header {
     padding: 0;
     margin: 0;
