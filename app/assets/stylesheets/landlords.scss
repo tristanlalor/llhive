@@ -71,6 +71,20 @@ h1 {
   padding: 0;
   display: inline-block;
 }
+.submit-back {
+  //border: solid green 3px;
+  background: url("/images/back-arrow.png");
+  top: 15px;
+  left: 15px;
+  height: 24px;
+}
+#back-arrow {
+  position: sticky;
+  top: 15px;
+  left: 15px;
+  float: top;
+  text-align: left;
+}
 .edit-back {
   //border: solid green 3px;
   height: auto;
@@ -83,7 +97,7 @@ h1 {
 }
 .show-name {
   font-size: 68px;
-  height: 100px;
+  height: 5px;
   //border: solid red 1px;
   padding: 45px;
   min-width: 479px;
@@ -95,6 +109,38 @@ h1 {
 
   //font-family: Palatino,Palatino Linotype,Palatino LT STD,Book Antiqua,Georgia,serif;
   font-family: Perpetua,Baskerville,Big Caslon,Palatino Linotype,Palatino,URW Palladio L,Nimbus Roman No9 L,serif;
+}
+#reviews {
+  text-align: center;
+  line-height: 0;
+}
+#header {
+  //overflow: hidden;
+  //display:inline;
+  //height: 0px;
+  width: 80vw;
+  padding: 25px;
+  //border: solid gold 1px;
+
+}
+#reviews #header h1 {
+  font-family: Perpetua,Baskerville,Big Caslon,Palatino Linotype,Palatino,URW Palladio L,Nimbus Roman No9 L,serif;
+  //border: solid #730E15 2px;
+  font-weight: normal;
+  white-space: nowrap;
+  //line-break: normal;
+  display:inline;
+}
+#header a:link, #header a:visited {
+  float: right;
+  padding-right: 200px;
+  white-space: nowrap !important;
+  display:inline;
+}
+.line {
+  width: 70vw;
+  border: solid white 1px;
+  display: inline-block;
 }
 .show-area {
   font-size: 20px;
@@ -136,6 +182,7 @@ h1 {
 }
 #results-container,
 #show-landlord {
+  position: relative;
   display: block;
   align-content: initial;
   text-align: left;
@@ -147,13 +194,15 @@ h1 {
   //border: solid red 1px;
   display: inline-block;
   color: white;
-  overflow: scroll;
+  //overflow: scroll;
   transition: all .2s ease-in-out;
 }
+
 #show-landlord {
   text-align: center;
   display: inline-block;
   //border: solid green 3px;
+  overflow: scroll;
 }
 .scores div div {
   color: white;
@@ -179,6 +228,7 @@ h1 {
 }
 .org-score strong, .com-score strong, .isre-score strong, .overall-score strong {
   font-size: 18px;
+  color: #2E2F30;
 }
 .org-score div, .com-score div, .isre-score div, .overall-score div {
   font-size: 16px;
@@ -195,7 +245,7 @@ h1 {
 }
 .search-title {
   float: top;
-  height: 48px;
+  height: 32px;
   padding: 20px;
   //border: solid red 3px;
 }
@@ -210,7 +260,7 @@ h1 {
 .search-body {
   overflow: scroll;
   //height: 250px;
-  max-height: calc(94vh - 15vw - 60px - 96px);
+  max-height: calc(94vh - 15vw - 60px - 164px);
   padding: 20px;
   //border: solid green 3px;
 }
