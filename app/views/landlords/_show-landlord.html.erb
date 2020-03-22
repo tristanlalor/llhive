@@ -1,3 +1,367 @@
+<style>
+* {
+  transition: all .2s ease-in-out;
+}
+#home-page-full {
+  width: 100vw;
+  height: 100vh;
+  align-content: center;
+  text-align: center;
+  background-color: rgba(5,0,0,.2);
+  overflow: scroll;
+  transition: all .2s ease-in-out;
+}
+h1 {
+  font-size: 22pt;
+}
+.search-box {
+  display: inline-block;
+}
+.navbar-page {
+  display: initial;
+}
+#navbar-page {
+  transition: all .4s ease-in-out;
+}
+#navbar-page a {
+  transition: all .4s ease-in-out;
+}
+#login-out,
+#login-out:link,
+#login-out:visited {
+  position: fixed;
+  top: 0;
+  right: 0;
+  color: white;
+  padding-right: 4px;
+}
+.submit-name {
+  color: white;
+  transition: all .2s ease-out;
+  background-color: transparent;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius:6px;
+  color: #fff;
+  //font-family: 'Oswald';
+  font-size: 20px;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  padding: 0;
+}
+.edit-back, .edit-back a:link, .edit-back a:visited, .submit-back, .edit-back form {
+  color: white;
+  transition: all .2s ease-out;
+  background-color: transparent;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius:6px;
+  color: #fff;
+  //font-family: 'Oswald';
+  font-size: 20px;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  display: inline-block;
+}
+.submit-back {
+  //border: solid green 3px;
+  background: url("/images/back-arrow.png");
+  top: 15px;
+  left: 15px;
+  height: 24px;
+}
+#back-arrow {
+  position: sticky;
+  top: 15px;
+  left: 15px;
+  float: top;
+  text-align: left;
+}
+.edit-back {
+  //border: solid green 3px;
+  height: auto;
+  width: 100%;
+  text-align: center;
+  align-items: stretch;
+}
+.submit-name:hover {
+  font-size: 21px;
+}
+.show-name {
+  font-size: 68px;
+  height: 5px;
+  //border: solid red 1px;
+  padding: 45px;
+  min-width: 479px;
+  //font-family: 'Oswald';
+  //font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
+  //font-family: "Bodoni MT", Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
+  //font-family: Cambria,Georgia,serif;
+  //font-family: Big Caslon,Book Antiqua,Palatino Linotype,Georgia,serif;
+
+  //font-family: Palatino,Palatino Linotype,Palatino LT STD,Book Antiqua,Georgia,serif;
+  font-family: Perpetua,Baskerville,Big Caslon,Palatino Linotype,Palatino,URW Palladio L,Nimbus Roman No9 L,serif;
+}
+#reviews {
+  text-align: center;
+  line-height: 0;
+}
+#header {
+  //overflow: hidden;
+  //display:inline;
+  //height: 0px;
+  width: 80vw;
+  padding: 25px;
+  //border: solid gold 1px;
+
+}
+#reviews #header h1 {
+  font-family: Perpetua,Baskerville,Big Caslon,Palatino Linotype,Palatino,URW Palladio L,Nimbus Roman No9 L,serif;
+  //border: solid #730E15 2px;
+  font-weight: normal;
+  white-space: nowrap;
+  //line-break: normal;
+  display:inline;
+}
+#header a:link, #header a:visited {
+  float: right;
+  padding-right: 200px;
+  white-space: nowrap !important;
+  display:inline;
+}
+.line {
+  width: 70vw;
+  border: solid white 1px;
+  display: inline-block;
+}
+.show-area {
+  font-size: 20px;
+}
+.name-container {
+  height: 28px;
+  //border: solid green 3px;
+  display: inline-block;
+  width: 60vw;
+}
+.name-container form {
+  display: inline-block;
+}
+.rating {
+  display: inline-block;
+  position: relative;
+  float: right;
+}
+.account-button:link,
+.account-button:visited {
+  color: white;
+  transition: all .2s ease-out;
+}
+.account-button:hover {
+  background-color: rgba(0,0,0,0);
+  //font-weight: bolder;
+  font-size: 1.1em;
+}
+#search-results {
+  //width: 80vw;
+  ////height: calc(100vh - 12.5vw - 2.5vw - 2.5vh - 1% - 1% - 1000px) !important;
+  //max-height: calc(94vh - 15vw - 60px);
+  //background-color: rgba(5,0,0,.2);
+  ////border: solid red 1px;
+  //display: inline-block;
+  //padding: 20px;
+  //color: white;
+  //overflow: scroll;
+}
+#results-container,
+#show-landlord {
+  position: relative;
+  display: block;
+  align-content: initial;
+  text-align: left;
+  //border: solid red 1px;
+  width: 80vw;
+  //height: calc(100vh - 12.5vw - 2.5vw - 2.5vh - 1% - 1% - 1000px) !important;
+  max-height: calc(94vh - 15vw - 60px);
+  background-color: rgba(5,0,0,.2);
+  //border: solid red 1px;
+  display: inline-block;
+  color: white;
+  //overflow: scroll;
+  transition: all .2s ease-in-out;
+}
+
+#show-landlord {
+  text-align: center;
+  display: inline-block;
+  //border: solid green 3px;
+  overflow: scroll;
+}
+.scores div div {
+  color: white;
+  padding: 10px;
+  padding-right: 20px;
+  padding-left: 20px;
+  //font-style: italic;
+}
+.scores {
+  //border: solid red 3px;
+  padding: 0;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  height: 200px;
+  top: 0;
+  height: auto;
+}
+.org-score, .com-score, .isre-score, .overall-score {
+  //font-weight: bold;
+  font-size: 36px;
+  font-family: Perpetua,Baskerville,Big Caslon,Palatino Linotype,Palatino,URW Palladio L,Nimbus Roman No9 L,serif;
+}
+.org-score strong, .com-score strong, .isre-score strong, .overall-score strong {
+  font-size: 18px;
+  color: #2E2F30 !important;
+}
+.org-score div, .com-score div, .isre-score div, .overall-score div {
+  font-size: 16px;
+  font-family: sans-serif;
+}
+
+.org-score, .com-score, .isre-score {
+  top: 0;
+  width: 31%;
+  height: 100%;
+  //border: solid blue 3px;
+  display: inline-block;
+  vertical-align: top;
+}
+.search-title {
+  float: top;
+  height: 32px;
+  padding: 20px;
+  //border: solid red 3px;
+}
+#add-landlord-container {
+  float: bottom;
+  height: 48px;
+  padding: 20px;
+  padding-bottom: 20px;
+  padding-top: 0;
+  //border: solid red 3px;
+}
+.search-body {
+  overflow: scroll;
+  //height: 250px;
+  max-height: calc(94vh - 15vw - 60px - 164px);
+  padding: 20px;
+  //border: solid green 3px;
+}
+#add-landlord-container a:link,
+#add-landlord-container a:visited {
+  color: white;
+  font-weight: bolder;
+  text-decoration: underline;
+}
+#add-landlord-container a:hover {
+  background-color: rgba(0,0,0,0);
+}
+
+#results-container span a,
+#results-container span a:link,
+#results-container span a:visited, {
+  font-size: 22px;
+  color: white !important;
+  transition: all .2s ease-in-out;
+}
+#results-container span a:hover {
+  background-color: rgba(0,0,0,0);
+  //font-weight: bold;
+  font-size: 1.8em;
+}
+
+.edit-container {
+  height: 16px;
+  color: white;
+}
+.edit-container a,
+.edit-container a:link,
+.edit-container a:visited {
+  transition: all .2s ease-in-out;
+  color: white;
+}
+.edit-container a:hover {
+  font-size: 1.1em;
+  background-color: rgba(0,0,0,0);
+
+}
+.hero-image {
+  //width: 30%;
+  height: 25vw;
+  width: auto;
+  display: inline-block;
+  transition: ease-in-out .2s;
+  object-fit: cover;
+}
+.hero-title {
+  //width: 25%;
+  height: 5vw;
+  width: auto;
+  display: inline-block;
+  transition: ease-in-out .2s;
+}
+#navbar-page {
+  //border: solid green 3px;
+  display: block;
+  width: 100vw !important;
+  height: 10vh;
+}
+#navbar-page a:hover {
+  background-color: transparent;
+}
+#navbar-page a img {
+  width: auto;
+  height: 8vh;
+  //border: solid green 3px;
+}
+#navbar-page a img:hover {
+  width: 12.5vw;
+  opacity: .5;
+}
+.hero-page, #navbar-page a {
+  position: fixed;
+  left: 2.5px;
+  top: 2.5px;
+}
+
+.spacer {
+  height: 5vh;
+  width: 100vw;
+  //border: solid red 1px;
+  transition: ease-in-out .2s;
+}
+#spacer-4 {
+  height: 2.5vh;
+}
+#spacer-n {
+  height: 1.5vh;
+}
+#myVideo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-height: 100%;
+  min-width: 100%;
+  //max-height: 100%;
+  max-width: 100%;
+  z-index: -1;
+  object-fit: cover;
+  //background-size: cover;
+  filter: invert(1);
+}
+</style>
 <div id="show-landlord">
   <div id="back-arrow">
 <!--    <img src="/images/back-arrow.png">-->
