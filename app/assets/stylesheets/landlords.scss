@@ -228,7 +228,7 @@ h1 {
 }
 .org-score strong, .com-score strong, .isre-score strong, .overall-score strong {
   font-size: 18px;
-  color: #2E2F30;
+  color: #2E2F30 !important;
 }
 .org-score div, .com-score div, .isre-score div, .overall-score div {
   font-size: 16px;
