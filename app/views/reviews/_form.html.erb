@@ -35,17 +35,17 @@
 </style>
   <div class="field">
     <%= form.label "Organization Score" %>
-    <%= form.number_field :org_score, step: 0.000000000000000000000000000001, required: true, :min => 0, :max => 5 %>
+    <%= form.number_field :org_score, step: 0.000000000000000000000000000001, required: true, :min => 0, :max => 5 %> / 5
   </div>
 
   <div class="field">
     <%= form.label "Communication Score" %>
-    <%= form.number_field :comm_score, step: 0.000000000000000000000000000001, required: true, :min => 0, :max => 5 %>
+    <%= form.number_field :comm_score, step: 0.000000000000000000000000000001, required: true, :min => 0, :max => 5 %> / 5
   </div>
 
   <div class="field">
     <%= form.label "Issue Resolution Score" %>
-    <%= form.number_field :isre_score, step: 0.000000000000000000000000000001, required: true, :min => 0, :max => 5 %>
+    <%= form.number_field :isre_score, step: 0.000000000000000000000000000001, required: true, :min => 0, :max => 5 %> / 5
   </div>
   <div class="field">
     <%= form.hidden_field :landlord_id, :value => params[:landlord_id].to_i %>

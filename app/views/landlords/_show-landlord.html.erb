@@ -23,7 +23,7 @@
       <% if @landlord.reviews.count()  > 0 %>
         <% overall_score = (@landlord.reviews.average(:org_score) + @landlord.reviews.average(:comm_score) + @landlord.reviews.average(:isre_score))/3 %>
       <div class="overall-score">
-        <%= '%.2f' % overall_score %>
+        <%= '%.2f' % overall_score %> / 5
         <br/>
         <strong>Overall Score </strong>
       </div>
