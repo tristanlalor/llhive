@@ -73,31 +73,61 @@
         <br>
       </div>
       <div class="line"></div>
-
-      <table>
-        <tbody>
+      <div style="position: relative; display: block; float: none;">
         <% @landlord.reviews.each do |review| %>
-          <tr>
-            <td> name: </td>
-            <td style="font-style: italic;"><%= review.user.username %></td>
-          </tr>
-          <tr>
-            <td><%= review.body %></td>
-            <td><%= '%.1f' % review.org_score %></td>
-            <td><%= '%.1f' % review.comm_score %></td>
-            <td><%= '%.1f' % review.isre_score %></td>
-            <td><%= link_to 'Show', landlord_review_path(@landlord, review) %></td>
+          <div id="spacer-n"></div>
+          <div class="review">
+            Organization:
+            <div><%= '%.1f' % review.org_score %></div>
+            Communication:
+            <div><%= '%.1f' % review.comm_score %></div>
+            Issue Resolution:
+            <div><%= '%.1f' % review.isre_score %></div>
+            <br>
+            <div><%= review.body %></div>
+            <br>
+            <div> by  </div>
+            <div style="font-style: italic;"><%= review.user.username %></div>
             <% if (user_signed_in? && (current_user.id == review.user_id)) %>
-              <td><%= link_to 'Edit', edit_landlord_review_path(@landlord,review) %></td>
-              <td><%= link_to 'Delete', review, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <div><%= link_to 'Edit', edit_landlord_review_path(@landlord,review) %></div>
+              <div><%= link_to 'Delete', review, method: :delete, data: { confirm: 'Are you sure?' } %></div>
             <% end %>
-          </tr>
+          </div>
         <% end %>
-        </tbody>
-      </table>
-
-      <br>
+      </div>
     </div>
+
+
+
+
+<!--      <table>-->
+<!--        <tbody>-->
+        <%# @landlord.reviews.each do |review| %>
+<!--          <td> name: </td>-->
+<!--          <td style="font-style: italic;"><%#= review.user.username %></td>-->
+        <%# end %>
+
+<!--          <tr>-->
+<!--            <td> name: </td>-->
+<!--            <td style="font-style: italic;"><%#= review.user.username %></td>-->
+<!--          </tr>-->
+<!--          <tr>-->
+<!--            <td><%#= review.body %></td>-->
+<!--            <td><%#= '%.1f' % review.org_score %></td>-->
+<!--            <td><%#= '%.1f' % review.comm_score %></td>-->
+<!--            <td><%#= '%.1f' % review.isre_score %></td>-->
+<!--            <td><%#= link_to 'Show', landlord_review_path(@landlord, review) %></td>-->
+            <%# if (user_signed_in? && (current_user.id == review.user_id)) %>
+<!--              <td><%#= link_to 'Edit', edit_landlord_review_path(@landlord,review) %></td>-->
+<!--              <td><%#= link_to 'Delete', review, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
+            <%# end %>
+<!--          </tr>-->
+        <%# end %>
+<!--        </tbody>-->
+<!--      </table>-->
+
+    <br>
   </div>
 </div>
+
 
