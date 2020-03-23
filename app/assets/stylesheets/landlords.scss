@@ -232,6 +232,29 @@ h1 {
   //border: solid green 3px;
   overflow: scroll;
 }
+.new-review a:link,
+.new-review a:visited,
+.score-box {
+  background-color: rgba(0,0,0,.2);
+  border-radius: 15px 15px;
+  padding-right: 8px;
+  padding-left: 8px;
+}
+.new-review a:link,
+.new-review a:visited {
+  line-height: normal;
+  width: 0px;
+  color: white;
+  //font-weight: bold;
+}
+.new-review, .new-review a {
+  text-align: center;
+  padding: 10px;
+}
+.score {
+  font-weight: bold;
+  color: #2E2F30;
+}
 .scores div div {
   color: white;
   padding: 10px;

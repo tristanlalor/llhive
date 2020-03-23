@@ -69,7 +69,9 @@
       <div id="header">
         <br>
         <h1>Reviews</h1>
-        <%= link_to "New Review", new_landlord_review_path(@landlord) %>
+        <div class="new-review">
+          <%= link_to "New Review", new_landlord_review_path(@landlord) %>
+        </div>
         <br>
       </div>
       <div class="line"></div>
@@ -77,14 +79,20 @@
         <% @landlord.reviews.each do |review| %>
           <div id="spacer-n"></div>
           <div class="review">
-            Organization:
-            <div><%= '%.1f' % review.org_score %></div>
-            Communication:
-            <div><%= '%.1f' % review.comm_score %></div>
-            Issue Resolution:
-            <div><%= '%.1f' % review.isre_score %></div>
+            <div class="score-box">
+              Organization:
+              <div class="score"><%= '%.1f' % review.org_score %></div>
+            </div>
+            <div class="score-box">
+              Communication:
+              <div class="score"><%= '%.1f' % review.comm_score %></div>
+            </div>
+            <div class="score-box">
+              Issue Resolution:
+              <div class="score"><%= '%.1f' % review.isre_score %></div>
+            </div>
             <br>
-            <div><%= review.body %></div>
+            <div style="line-height: normal;"><%= review.body %></div>
             <br>
             <div> by  </div>
             <div style="font-style: italic;"><%= review.user.username %></div>
