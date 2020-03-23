@@ -20,22 +20,39 @@ document.getElementById('hero-2').onclick = homeClick;
 <% if params[:search] == nil && params[:id] != nil %>
   $('#search-results').remove();
   $('#show-landlord').remove();
-  $('#search-container').append('<%= j render 'show-landlord', id: params[:id] %>');
+  $('#search').remove();
+  $('#gray-box').append('<%= j render 'show-landlord', id: params[:id] %>');
+  document.getElementById("gray-box").style.maxHeight = "93vh";
+  document.getElementById("show-landlord").style.maxHeight = "93vh";
+
+  document.getElementById("hero-1").style.height = "0";
+  document.getElementById("spacer-1").style.height = "0";
+  document.getElementById("spacer-2").style.height = "0";
+  document.getElementById("hero-2").style.height = "0";
+  document.getElementById("spacer-3").style.height = "0";
+  document.getElementById("spacer-4").style.height = "0";
+//  document.getElementById("search").style.height = "0";
 <% else %>
   $('#search-results').remove();
   $('#show-landlord').remove();
-  $('#search-container').append('<%= j render 'searchresults' %>');
+  if (document.getElementById('search') == null) {
+    $('#inner').append('<div id="search"><%= j render 'search' %></div>')
+  }
+  $('#gray-box').append('<%= j render 'searchresults' %>');
+  $
   document.getElementById("hero-1").style.height = "12.5vw";
   document.getElementById("spacer-1").style.height = "1vh";
   document.getElementById("spacer-2").style.height = "1vh";
   document.getElementById("hero-2").style.height = "2.5vw";
   document.getElementById("spacer-3").style.height = "2.5vh";
+document.getElementById("spacer-4").style.height = "2.5vh";
   document.getElementById("home-page-full").style.backgroundColor = "rgba(255,255,255,.8)";
   document.getElementById("hero-1").style.filter = "invert(.5)";
   document.getElementById("hero-2").style.filter = "invert(.5)";
   document.getElementById("login-out").style.color = "RGB(109,109,109)";
   document.getElementById("login-out").children[0].style.color = "RGB(109,109,109)";
   document.getElementById("login-out").children[1].style.color = "RGB(109,109,109)";
+//  document.getElementById("search").style.height = "19px";
 
   <%# if current_page?('/') || current_page?('/landlords') %>
   //  $('#search-results1').remove();
