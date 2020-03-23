@@ -33,8 +33,9 @@ class ReviewsController < ApplicationController
 
     respond_to do |format|
       if @review.save
-        format.html { redirect_to landlord_path(@review.landlord_id), notice: 'Review was successfully created.' }
+        format.html { redirect_to root_path(params[:id => params[:landlord_id]]), notice: 'Review was successfully created.' }
         format.json { render :show, status: :created, location: @review }
+        format.js {render j index}
       else
         format.html { render :new }
         format.json { render json: @review.errors, status: :unprocessable_entity }

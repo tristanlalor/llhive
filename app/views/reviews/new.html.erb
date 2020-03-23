@@ -1,6 +1,74 @@
-<h1>New Review</h1>
-<% review = @review %>
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Landlord Review</title>
+  <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag 'landlords', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" %>
+  <script src="javascript/main.js" type="text/javascript"></script>
+  <%= javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" %>
+  <%= javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/jquery-ujs/1.2.2/rails.min.js" %>
+</head>
+<% random_number = rand(46)+1 %>
+<% random_number_string = "/videos/" + random_number.to_s + ".mp4" %>
+<% random_number_string2 = "https://github.com/tristanlalor/llhive-videos/blob/master/" + random_number.to_s + ".mp4?raw=true" %>
+<div id="myVideo" style="background-color: white; filter: invert(0)">
+  <!--    <source src="<%#= random_number_string %>" type="video/mp4">-->
+  <!--  <source src="<%#= random_number_string2 %>">-->
+</div>
+
+<!--  <script>-->
+<!--    document.getElementById('hero-1').onclick = function(){-->
+<!--        $('#search-results').remove();-->
+<!--        $('#show-landlord').remove();-->
+<!--        document.getElementById("hero-1").style.height = "25vw";-->
+<!--        document.getElementById("spacer-1").style.height = "5vh";-->
+<!--        document.getElementById("spacer-2").style.height = "5vh";-->
+<!--        document.getElementById("hero-2").style.height = "5vw";-->
+<!--        document.getElementById("spacer-3").style.height = "5vh";-->
+<!--    }-->
+<!--  </script>-->
+
+
+<body>
+<div id="home-page-full" style="background-color: white">
+  <%= form_tag :method => "get" do %>
+    <%= hidden_field_tag "id", 1 %>
+  <% end %>
+  <div id="login-out" style="filter: invert(.8)">
+    <% if user_signed_in? %>
+      <%= link_to current_user.name, edit_user_registration_path, class: "account-button" %> |
+      <%= link_to "Logout", destroy_user_session_path, method: :delete, class:"account-button" %>
+    <% else %>
+      <%= link_to 'Sign In', new_user_session_path, class: "account-button" %> |
+      <%= link_to 'Sign Up', new_user_registration_path, class: "account-button" %>
+    <% end %>
+  </div>
+  <script>
+      function goHome() {
+          window.location.href = "/";
+      }
+  </script>
+  <%#= render '/layouts/navbar' %>
+  <div class="search-box" id="search-container">
+    <div class="spacer" id="spacer-1"></div>
+    <img id="hero-1" class="hero-image" src="/images/4.png" onclick="goHome();" style="filter: invert(.8)">
+    <br>
+    <div class="spacer" id="spacer-2"></div>
+    <img class="hero-title" id="hero-2" src="/images/5.png" onclick="goHome();" style="filter: invert(.8)">
+    <div class="spacer" id="spacer-3"></div>
+
+    <h1>New Review</h1>
+    <% review = @review %>
 <%#= render_partial :form %>
-<%= render 'form', review: @review %>
-<%= link_to 'Back', landlord_path(params[:landlord_id]) %>
-<%=params[:landlord_id] %>
+    <%= render 'form', review: @review %>
+    <%= link_to 'Back', :back %>
+    <%#=params[:landlord_id] %>
+    <div class="spacer" id="spacer-3"></div>
+    <div class="spacer" id="spacer-3"></div>
+  </div>
+</div>
+</body>
+</html>
+

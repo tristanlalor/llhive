@@ -11,6 +11,17 @@
     </div>
   <% end %>
 
+  <%#= form.label "Landlord:" %>
+  <h2>
+    <%#= form.label "Landlord:" %>
+    <%= Landlord.find_by_id(params[:landlord_id].to_i).first_name %>
+    <%= Landlord.find_by_id(params[:landlord_id].to_i).last_name %></h2>
+<style>
+  textarea {
+    width: 75vw;
+    height: 30vh;
+  }
+</style>
   <div class="field">
     <%= form.label :body %>
     <%= form.text_area :body, required: true %>
@@ -23,23 +34,20 @@
   }
 </style>
   <div class="field">
-    <%= form.label :org_score %>
+    <%= form.label "Organization Score" %>
     <%= form.number_field :org_score, step: 0.000000000000000000000000000001, required: true, :min => 0, :max => 5 %>
   </div>
 
   <div class="field">
-    <%= form.label :comm_score %>
+    <%= form.label "Communication Score" %>
     <%= form.number_field :comm_score, step: 0.000000000000000000000000000001, required: true, :min => 0, :max => 5 %>
   </div>
 
   <div class="field">
-    <%= form.label :isre_score %>
+    <%= form.label "Issue Resolution Score" %>
     <%= form.number_field :isre_score, step: 0.000000000000000000000000000001, required: true, :min => 0, :max => 5 %>
   </div>
   <div class="field">
-    <%= form.label "Landlord:" %>
-    <%= Landlord.find_by_id(params[:landlord_id].to_i).first_name %>
-    <%= Landlord.find_by_id(params[:landlord_id].to_i).last_name %>
     <%= form.hidden_field :landlord_id, :value => params[:landlord_id].to_i %>
     <%= form.hidden_field :user_id, :value => current_user.id %>
   </div>

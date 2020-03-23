@@ -1,55 +1,123 @@
-<div class="section">
-  <div class="container">
-    <div class="columns is-centered">
+<!DOCTYPE html>
+<html>
 
-      <div class="column is-4">
+<head>
+  <title>Landlord Review</title>
+  <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag 'landlords', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" %>
+  <script src="javascript/main.js" type="text/javascript"></script>
+  <%= javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" %>
+  <%= javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/jquery-ujs/1.2.2/rails.min.js" %>
+</head>
+<% random_number = rand(46)+1 %>
+<% random_number_string = "/videos/" + random_number.to_s + ".mp4" %>
+<% random_number_string2 = "https://github.com/tristanlalor/llhive-videos/blob/master/" + random_number.to_s + ".mp4?raw=true" %>
+<div id="myVideo" style="background-color: white; filter: invert(0)">
+  <!--    <source src="<%#= random_number_string %>" type="video/mp4">-->
+<!--  <source src="<%#= random_number_string2 %>">-->
+</div>
 
-        <h2 class="title is-2">Sign Up</h2>
+<!--  <script>-->
+<!--    document.getElementById('hero-1').onclick = function(){-->
+<!--        $('#search-results').remove();-->
+<!--        $('#show-landlord').remove();-->
+<!--        document.getElementById("hero-1").style.height = "25vw";-->
+<!--        document.getElementById("spacer-1").style.height = "5vh";-->
+<!--        document.getElementById("spacer-2").style.height = "5vh";-->
+<!--        document.getElementById("hero-2").style.height = "5vw";-->
+<!--        document.getElementById("spacer-3").style.height = "5vh";-->
+<!--    }-->
+<!--  </script>-->
 
-        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-          <%= f.error_notification %>
 
-          <div class="field">
-            <div class="control">
-              <%= f.input :name, required: true, autofocus: true, input_html: { class:"input" }, wrapper: false, label_html: { class:"label" } %>
-            </div>
+<body>
+<div id="home-page-full" style="background-color: white">
+  <%= form_tag :method => "get" do %>
+    <%= hidden_field_tag "id", 1 %>
+  <% end %>
+  <div id="login-out" style="filter: invert(.8)">
+    <% if user_signed_in? %>
+      <%= link_to current_user.name, edit_user_registration_path, class: "account-button" %> |
+      <%= link_to "Logout", destroy_user_session_path, method: :delete, class:"account-button" %>
+    <% else %>
+      <%= link_to 'Sign In', new_user_session_path, class: "account-button" %> |
+      <%= link_to 'Sign Up', new_user_registration_path, class: "account-button" %>
+    <% end %>
+  </div>
+  <script>
+      function goHome() {
+          window.location.href = "/";
+      }
+  </script>
+  <%#= render '/layouts/navbar' %>
+  <div class="search-box" id="search-container">
+    <div class="spacer" id="spacer-1"></div>
+    <img id="hero-1" class="hero-image" src="/images/4.png" onclick="goHome();" style="filter: invert(.8)">
+    <br>
+    <div class="spacer" id="spacer-2"></div>
+    <img class="hero-title" id="hero-2" src="/images/5.png" onclick="goHome();" style="filter: invert(.8)">
+    <div class="spacer" id="spacer-3"></div>
+    <div class="section">
+      <div class="container">
+        <div class="columns is-centered">
+
+          <div class="column is-4">
+
+            <h2 class="title is-2">Sign Up</h2>
+
+            <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+              <%= f.error_notification %>
+
+              <div class="field">
+                <div class="control">
+                  <%= f.input :name, required: true, autofocus: true, input_html: { class:"input" }, wrapper: false, label_html: { class:"label" } %>
+                </div>
+              </div>
+
+              <div class="field">
+                <div class="control">
+                  <%= f.input :username, required: true, input_html: { class:"input" }, wrapper: false, label_html: { class:"label" } %>
+                </div>
+              </div>
+
+              <div class="field">
+                <div class="control">
+                  <%= f.input :email, required: true, input_html: { class:"input" }, wrapper: false, label_html: { class:"label" } %>
+                </div>
+              </div>
+
+
+              <div class="field">
+                <div class="control">
+                  <%= f.input :password, required: true, input_html: { class:"input" }, wrapper: false %>
+                </div>
+              </div>
+
+              <div class="field">
+                <div class="control">
+                  <%= f.input :password_confirmation, required: true, input_html: { class: "input" }, wrapper: false, label_html: { class: "label" } %>
+                </div>
+              </div>
+
+              <div class="field">
+                <div class="control">
+                  <%= f.button :submit, "Sign up", class:"button is-info is-medium" %>
+                </div>
+              </div>
+
+            <% end %>
+            <br />
+            <%= render "devise/shared/links" %>
+            <%= link_to "Back", :back %>
           </div>
-
-          <div class="field">
-            <div class="control">
-              <%= f.input :username, required: true, input_html: { class:"input" }, wrapper: false, label_html: { class:"label" } %>
-            </div>
-          </div>
-
-          <div class="field">
-            <div class="control">
-              <%= f.input :email, required: true, input_html: { class:"input" }, wrapper: false, label_html: { class:"label" } %>
-            </div>
-          </div>
-
-
-          <div class="field">
-            <div class="control">
-              <%= f.input :password, required: true, input_html: { class:"input" }, wrapper: false, label_html: { class:"label" }, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
-            </div>
-          </div>
-
-          <div class="field">
-            <div class="control">
-              <%= f.input :password_confirmation, required: true, input_html: { class: "input" }, wrapper: false, label_html: { class: "label" } %>
-            </div>
-          </div>
-
-          <div class="field">
-            <div class="control">
-              <%= f.button :submit, "Sign up", class:"button is-info is-medium" %>
-            </div>
-          </div>
-
-        <% end %>
-        <br />
-        <%= render "devise/shared/links" %>
+        </div>
       </div>
     </div>
   </div>
 </div>
+</body>
+</html>
+
+
+
