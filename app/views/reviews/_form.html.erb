@@ -51,7 +51,10 @@
     <%= form.hidden_field :landlord_id, :value => params[:landlord_id].to_i %>
     <%= form.hidden_field :user_id, :value => current_user.id %>
   </div>
-
+  <div class="field">
+    <%= form.label "Anonymous?" %>
+    <%= form.check_box :anon %>
+  </div>
   <div class="actions">
     <%= form.submit %>
   </div>
