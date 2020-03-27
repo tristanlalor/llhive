@@ -69,10 +69,18 @@
       <div id="header">
         <br>
         <h1>Reviews</h1>
-        <div class="new-review">
-          <%= link_to "New Review", new_landlord_review_path(@landlord) %>
-        </div>
-        <br>
+        <%# if user_signed_in? && ((Review.where(:user_id => current_user.id) & Review.where(:landlord_id => @landlord.id)) != nil) %>
+        <% if user_signed_in? && (Review.where('reviews.user_id = ? AND reviews.landlord_id = ?', current_user.id, @landlord.id).length == 0) %>
+          <div id="spacer-n"></div>
+          <div class="new-review">
+            <%= link_to "Add Review", new_landlord_review_path(@landlord) %>
+          </div>
+        <% elsif !user_signed_in? %>
+          <div id="spacer-n"></div>
+          <div class="new-review">
+            <%= link_to "Add Review", new_landlord_review_path(@landlord) %>
+          </div>
+        <% end %>
       </div>
       <div class="line"></div>
       <div style="position: relative; display: block; float: none;">

@@ -8,7 +8,7 @@ class LandlordsController < ApplicationController
     #respond_to do |format|
     #  format.js {}
     #end
-    flash[:notice] = "Task was successfully created."
+    #flash[:notice] = "Task was successfully created."
   end
   #def search
   #  if params[:search]
@@ -42,7 +42,10 @@ class LandlordsController < ApplicationController
 
     respond_to do |format|
       if @landlord.save
-        format.html { redirect_to @landlord, notice: 'Landlord was successfully created.' }
+        flash.clear
+        format.html { redirect_to root_path, notice: 'Landlord was successfully created.' }
+        #flash.now[:notice]
+        #flash.now[:alert] = 'Landlord was successfully created.'
         format.json { render :show, status: :created, location: @landlord }
       else
         format.html { render :new }
