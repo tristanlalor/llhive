@@ -105,7 +105,11 @@
             <div style="line-height: normal;"><%= review.body %></div>
             <br>
             <div> by  </div>
-            <div style="font-style: italic;"><%= review.user.username %></div>
+            <% if review.anon %>
+              <div style="font-style: italic;">Anonymous</div>
+            <% else %>
+              <div style="font-style: italic;"><%= review.user.username %></div>
+            <% end %>
             <% if (user_signed_in? && (current_user.id == review.user_id)) %>
               <div><%= link_to 'Edit', edit_landlord_review_path(@landlord,review) %></div>
               <div><%= link_to 'Delete', review, method: :delete, data: { confirm: 'Are you sure?' } %></div>
